@@ -9,7 +9,7 @@ CREATE OR REPLACE FUNCTION fn_valida_estoque_minimo()
 RETURNS TRIGGER AS $$
 BEGIN
     IF NEW.quantidade < 0 THEN
-        RAISE EXCEPTION  
+        RAISE EXCEPTION  'Operação cancelada! O item "%" não pode ter estoque negativo (Tentativa: % unidade(s)).',
             NEW.nome_item, NEW.quantidade;
     END IF;
     RETURN NEW;
